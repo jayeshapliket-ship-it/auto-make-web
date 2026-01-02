@@ -141,7 +141,6 @@
     </div>
 
     <script>
-        const apiBase = () => document.getElementById("apiBaseUrl").value.trim();
         const statusEl = document.getElementById("status");
         const logEl = document.getElementById("log");
         const btn = document.getElementById("buildBtn");
@@ -190,7 +189,7 @@
                 setStatus("loading", "🛠 Building Flutter APK...");
 
                 const buildData = await safeFetch(
-                    `${apiBase()}/build-apk`,
+                    `https://auto-make-backend.onrender.com/build-apk`,
                     {
                         project_path: projectPath.value,
                         apk_name: apkName.value || "app-release.apk"
@@ -204,7 +203,7 @@
                 setStatus("loading", "☁️ Uploading APK to Google Drive...");
 
                 const uploadData = await safeFetch(
-                    `${apiBase()}/drive-upload-apk`,
+                    `https://auto-make-backend.onrender.com/drive-upload-apk`,
                     {
                         apk_path: buildData.apk_path,
                         apk_name: apkName.value || "app-release.apk",
